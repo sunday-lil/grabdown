@@ -78,7 +78,15 @@ def ffmpeg_version(exe: str | None = None) -> str:
 def diagnose() -> dict[str, object]:
     """给 `grabdown doctor` 用的体检结果。"""
     exe = find_ffmpeg()
+    try:
+        import cryptography
+
+        crypto = getattr(cryptography, "__version__", "ok")
+    except Exception:
+        crypto = ""
+
     return {
+        "crypto": crypto,
         "python": sys.version.split()[0],
         "executable": sys.executable,
         "platform": sys.platform,

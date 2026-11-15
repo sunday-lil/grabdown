@@ -159,6 +159,7 @@ def cmd_doctor(args) -> int:
     print(f"  python      : {info['python']}  ({info['platform']})")
     print(f"  executable  : {info['executable']}")
     y = ytb.diagnose()
+    print(f"  cryptography: {info.get('crypto') or '未安装（AES-128 的 HLS 需要它）'}")
     print(f"  yt-dlp      : {('v' + y['version']) if y['available'] else '未安装（主流平台解析需要它：' + y['hint'] + '）'}")
     print(f"  ffmpeg      : {info['ffmpeg'] or '未找到'}")
     if info["ffmpeg_version"]:

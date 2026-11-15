@@ -211,9 +211,12 @@ python -m grabdown get   "https://www.bilibili.com/video/BV1xx411c7mD" -q 1080
 | `direct` | 任意 `.m3u8` / `.mp4` | 直接走分段引擎 |
 
 ```bash
-python -m pip install -U yt-dlp        # 只装一次；B 站/YouTube 靠它
-python -m grabdown doctor              # 会显示 yt-dlp 与 ffmpeg 版本
+python -m pip install -r requirements.txt   # requests / yt-dlp / cryptography
+python -m grabdown doctor                   # 显示 yt-dlp、cryptography、ffmpeg 版本
 ```
+
+> `cryptography` 只有「AES-128 加密的 HLS」才用得到；缺了会明确提示装它，不会静默失败。
+> `yt-dlp` 负责主流平台，`ffmpeg` 负责合并音视频 / 转 mp4。
 
 为什么不自研 B 站/YouTube：
 

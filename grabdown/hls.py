@@ -135,8 +135,22 @@ def pick_variant(variants: list[Variant], quality: str) -> Variant:
         variants, key=lambda v: (v.height or 0, v.bandwidth or 0))
 
 
+def crypto_available() -> bool:
+    try:
+        import cryptography  # noqa: F401
+
+        return True
+    except Exception:
+        return False
+
+
 def _aes_cbc_decrypt(data: bytes, key: bytes, iv: bytes) -> bytes:
-    from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+    try:
+        from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+    except Exception as e:  # noqa: BLE001
+        raise GrabError(
+            "这条 HLS 用了 AES-128 加密，需要装 cryptography：python -m pip install cryptography"
+        ) from e
 
     dec = Cipher(algorithms.AES(key), modes.CBC(iv)).decryptor()
     out = dec.update(data) + dec.finalize()

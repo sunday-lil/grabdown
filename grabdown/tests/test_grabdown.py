@@ -148,6 +148,21 @@ seg1.ts
         self.assertEqual(m.segments[1].url, "https://cdn.test/play/720/seg1.ts")
 
 
+def _need_crypto():
+    try:
+        import cryptography  # noqa: F401
+
+        return True
+    except Exception:
+        return False
+
+
+def _need_ffmpeg():
+    from grabdown.tools import find_ffmpeg
+
+    return bool(find_ffmpeg())
+
+
 class TestHlsDownload(unittest.TestCase):
     KEY = bytes(range(16))
     SEGS = [
@@ -158,6 +173,8 @@ class TestHlsDownload(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        if not _need_crypto():
+            raise unittest.SkipTest("缺 cryptography，跳过 AES 用例")
         routes = {}
         media = ["#EXTM3U", "#EXT-X-VERSION:3", "#EXT-X-TARGETDURATION:4", "#EXT-X-MEDIA-SEQUENCE:0",
                  '#EXT-X-KEY:METHOD=AES-128,URI="key.bin"']
@@ -304,7 +321,8 @@ class TestToolsAndExtractorOrder(unittest.TestCase):
         from grabdown import tools
 
         real = tools.find_ffmpeg()
-        self.assertTrue(real, "当前机器应该有 ffmpeg")
+        if not real:
+            self.skipTest("这台机器没装 ffmpeg，跳过（CI 的 windows 镜像默认没有）")
         os.environ["GRAB_FFMPEG"] = real
         tools.find_ffmpeg.cache_clear()
         try:
