@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="popup.css" />
+<title>grabdown</title>
+</head>
+<body>
+<header>
+  <div class="mark">g</div>
+  <div class="who">
+    <div class="title">grabdown</div>
+    <div class="sub" id="statusText">连接本地 agent…</div>
+  </div>
+  <div class="status" id="status"><span class="dot"></span><span id="statusLabel">检测中</span></div>
+</header>
+
+<section class="block page">
+  <div class="rowhead"><span>本页 <b id="pagePlat">—</b></span><span class="pg" id="pageHost"></span></div>
+  <div class="row">
+    <span class="purl" id="pageUrl">读取当前标签页…</span>
+    <button class="primary" id="grabPage" disabled>下载本页</button>
+  </div>
+</section>
+
+<section class="block">
+  <div class="rowhead">
+    <span>本页媒体 <b id="count">0</b></span>
+    <button class="ghost" id="rescan">重新扫描</button>
+  </div>
+  <div id="list" class="list">
+    <div class="empty">没有发现 m3u8 / mp4。<br />播放一下视频再点「重新扫描」。</div>
+  </div>
+
+  <div class="row">
+    <label class="sel">
+      <span>清晰度</span>
+      <select id="quality">
+        <option value="best">最高</option>
+        <option value="1080">1080p</option>
+        <option value="720">720p</option>
+        <option value="worst">最低</option>
+      </select>
+    </label>
+    <button class="primary" id="send" disabled>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v11m0 0l-4-4m4 4l4-4"/><path d="M5 19h14"/></svg>
+      交给 grabdown
+    </button>
+  </div>
+
+  <div class="row auto">
+    <label class="switch">
+      <input type="checkbox" id="autoCapture" />
+      <span>自动捕获 m3u8</span>
+    </label>
+    <span class="hintline">关掉弹窗也继续监听所有标签页</span>
+  </div>
+</section>
+
+<section class="block">
+  <div class="rowhead"><span>任务</span><span class="live" id="live">—</span><button class="ghost" id="refreshJobs">刷新</button></div>
+  <div id="jobs" class="jobs"><div class="empty">还没有任务</div></div>
+</section>
+
+<section class="block">
+  <div class="rowhead"><span>自动捕获 <b id="autoCount">0</b></span><button class="ghost" id="autoAllBtn">只捕 m3u8</button></div>
+  <div id="autolog" class="jobs"><div class="empty">开着上面的开关，页面里的 m3u8 会自动进来</div></div>
+</section>
+
+<section class="block settings">
+  <details>
+    <summary>agent 设置</summary>
+    <div class="grid">
+      <label>地址（填 http，不是 ws）
+        <input id="agentUrl" placeholder="http://127.0.0.1:8899" />
+      </label>
+      <label>Token（可选）<input id="token" placeholder="留空则不需要" /></label>
+    </div>
+    <div class="diag" id="diag">后台自检中…</div>
+    <div class="hint">
+      先运行：<code>python -m grabdown agent</code>
+      <button class="ghost mini" id="copyCmd">复制</button>
+      <span id="wsState" class="wspill">WS 未连接</span>
+    </div>
+    <button class="save" id="save">保存</button>
+  </details>
+</section>
+
+<div class="toast" id="toast"></div>
+<script src="popup.js"></script>
+</body>
+</html>

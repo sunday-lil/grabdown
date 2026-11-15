@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "grabdown 下载助手",
+  "version": "1.0.5",
+  "description": "把网页里的视频/文件丢给本地 grabdown 多线程下载器：m3u8 自动合流、断点续传、IDM 式分段。",
+  "minimum_chrome_version": "110",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "downloads",
+    "activeTab",
+    "scripting",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "notifications",
+    "alarms",
+    "cookies"
+  ],
+  "host_permissions": [
+    "ws://localhost/*",
+    "ws://127.0.0.1/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "grabdown",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+G"
+      },
+      "description": "打开 grabdown 面板"
+    }
+  }
+}

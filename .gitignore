@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+node_modules/
+
+# 下载产物与运行时文件
+downloads/
+agent.log
+*.log
+*.tmp
+*.part*
+*.grabstate.json
+out/
+.DS_Store
+Thumbs.db
