@@ -10,6 +10,9 @@ python -m grabdown get    URL          # 提取 + 下载（HLS 自动合流 mp4�
 python -m grabdown dl     URL          # 纯文件分段下载（IDM 行为）
 ```
 
+> 配套项目：[**panl**](https://github.com/sunday-lil/panl) —— 10 家网盘分享直链提取器（GUI/CLI）。
+> grabdown 负责「直链 → 文件 / 网页视频 → 文件」，panl 解析出的直链可以直接丢过来下。
+
 > **TL;DR (EN)** — An IDM-style downloader with a Chrome/Edge extension.
 > Segmented multi-connection downloads with resume, HLS with AES-128 + ffmpeg remux,
 > a local agent (REST + WebSocket for live progress), and platform detection for
