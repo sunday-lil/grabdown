@@ -1,5 +1,10 @@
 # grabdown — IDM 式多线程下载器 + 网页媒体提取
 
+![CI](https://github.com/sunday-lil/grabdown/actions/workflows/ci.yml/badge.svg)
+![license](https://img.shields.io/badge/license-MIT-blue)
+![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![chrome](https://img.shields.io/badge/extension-Manifest%20V3-green)
+
 对标 Ghost Downloader（多线程/浏览器接管）与 dirpy（粘贴链接出文件），但只做一件事并做透：
 **把一个 URL 变成文件**，媒体页就先解析成 m3u8/mp4 再下载。
 
