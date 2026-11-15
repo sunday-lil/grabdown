@@ -111,7 +111,8 @@ ffmpeg 合流都在本机进程里跑，**视频不经过任何第三方服务�
 ### 3.2 装扩展
 
 1. 打开 `chrome://extensions`（Edge 是 `edge://extensions`）→ 打开「开发者模式」
-2. 「加载已解压的扩展程序」→ 选本仓库的 `ext/` 目录
+2. 「加载已解压的扩展程序」→ 选本仓库的 `ext/` 目录（或直接下
+   [release 里的 `grabdown-ext-*.zip`](https://github.com/sunday-lil/grabdown/releases/latest) 解压后选里面的 `ext/`）
 3. 图标出现在工具栏；`Alt+Shift+G` 打开面板
 
 ### 3.3 能干什么

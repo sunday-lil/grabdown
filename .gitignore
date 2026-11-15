@@ -15,3 +15,4 @@ agent.log
 out/
 .DS_Store
 Thumbs.db
+grabdown-ext-*.zip
