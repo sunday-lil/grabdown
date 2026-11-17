@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/sunday-lil/grabdown/actions/workflows/ci.yml/badge.svg)
 ![license](https://img.shields.io/badge/license-MIT-blue)
-![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![python](https://img.shields.io/badge/python-3.10%E2%80%933.15-blue)
 ![chrome](https://img.shields.io/badge/extension-Manifest%20V3-green)
 
 对标 Ghost Downloader（多线程/浏览器接管）与 dirpy（粘贴链接出文件），但只做一件事并做透：
@@ -173,7 +173,7 @@ ws://127.0.0.1:8899/ws          ← 扩展内部用的地址，设置里请填 h
 设置区最上面有一行等宽小字，例如：
 
 ```
-后台 v1.0.4 · 权限 downloads, storage, alarms, contextMenus, tabs, notifications, scripting, activeTab · 正常
+后台 v1.0.5 · 权限 downloads, storage, alarms, contextMenus, tabs, notifications, scripting, activeTab · 正常
 ```
 
 - 它来自后台的 `diag` 消息（`chrome.runtime.getManifest()` + 各 API 是否存在）；
